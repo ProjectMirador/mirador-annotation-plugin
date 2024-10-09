@@ -171,7 +171,7 @@ export default class RerumAdapter {
       .then((resp) => resp.json())
       .then((arr) => {
         knownAnnoPage = arr.shift();
-        knownAnnoPage?.items.forEach((anno) => anno.id === anno['@id']);
+        knownAnnoPage?.items.forEach((anno) => { anno.id = anno['@id']; });
         return knownAnnoPage;
       })
       .catch((err) => err);
