@@ -1,3 +1,4 @@
+
 import mirador from 'mirador/dist/es/src/index';
 import annotationPlugins from '../../src';
 import LocalStorageAdapter from '../../src/LocalStorageAdapter';
