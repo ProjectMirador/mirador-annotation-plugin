@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { OSDReferences } from 'mirador/dist/es/src/plugins/OSDReferences';
-import { renderWithPaperScope, PaperContainer } from '@psychobolt/react-paperjs';
-import
-{
-  EllipseTool,
-  PolygonTool,
-  RectangleTool,
-  FreeformPathTool,
-}
-  from '@psychobolt/react-paperjs-editor';
-import { Point } from 'paper';
+// import
+// {
+//   EllipseTool,
+//   PolygonTool,
+//   RectangleTool,
+//   FreeformPathTool,
+// }
+//   from '@psychobolt/react-paperjs-editor';
+// import { Point } from 'paper';
 import flatten from 'lodash/flatten';
 import EditTool from './EditTool';
 import { mapChildren } from './utils';
