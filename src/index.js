@@ -3,11 +3,13 @@ import externalStorageAnnotationPlugin from './plugins/externalStorageAnnotation
 import canvasAnnotationsPlugin from './plugins/canvasAnnotationsPlugin.jsx';
 import annotationCreationCompanionWindow from './plugins/annotationCreationCompanionWindow.jsx';
 import windowSideBarButtonsPlugin from './plugins/windowSideBarButtonsPlugin.jsx';
+import annotoriousWrapPlugin from './plugins/annotoriousWrapPlugin.jsx';
 
 export {
   miradorAnnotationPlugin, externalStorageAnnotationPlugin,
   canvasAnnotationsPlugin, annotationCreationCompanionWindow,
   windowSideBarButtonsPlugin,
+  annotoriousWrapPlugin
 };
 
 export default [
@@ -16,4 +18,5 @@ export default [
   canvasAnnotationsPlugin,
   annotationCreationCompanionWindow,
   windowSideBarButtonsPlugin,
+  annotoriousWrapPlugin
 ];

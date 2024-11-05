@@ -15,17 +15,15 @@ import { styled } from '@mui/material/styles';
 import { SketchPicker } from 'react-color';
 import { v4 as uuid } from 'uuid';
 import CompanionWindow from 'mirador/dist/es/src/containers/CompanionWindow';
-import AnnotoriousViewer from './AnnotoriousViewer';
-import { useAnnotator } from '@annotorious/react';
 
 import TextEditor from './TextEditor';
 import WebAnnotation from './WebAnnotation';
 import CursorIcon from './icons/Cursor';
 
 import RectangleIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CircleIcon from '@mui/icons-material/RadioButtonUnchecked';
 import PolygonIcon from '@mui/icons-material/Timeline';
-import GestureIcon from '@mui/icons-material/Gesture';
+// import GestureIcon from '@mui/icons-material/Gesture';
+// import CircleIcon from '@mui/icons-material/RadioButtonUnchecked';
 import ClosedPolygonIcon from '@mui/icons-material/ChangeHistory';
 import OpenPolygonIcon from '@mui/icons-material/ShowChart';
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
@@ -58,7 +56,17 @@ const AnnotationCreationCompanionWindow = ({
   handleToolChange
 }) => {
   const annoState = {};
-  console.log(handleToolChange)
+
+  // console.log({
+  //   annotation,
+  //   canvases,
+  //   closeCompanionWindow,
+  //   config,
+  //   id,
+  //   windowId,
+  //   receiveAnnotation,
+  //   handleToolChange
+  // })
 
   // Initialize state from props
   if (annotation) {
@@ -195,12 +203,6 @@ const AnnotationCreationCompanionWindow = ({
     }));
   };
 
-  // const changeTool = (e, tool) => {
-  //   console.log(e, tool)
-  //   setState((prev) => ({ ...prev, activeTool: tool }));
-  //   anno.setDrawingTool('rectangle');
-  // };
-
   const changeClosedMode = (e) => {
     setState((prev) => ({ ...prev, closedMode: e.currentTarget.value }));
   };
@@ -225,18 +227,6 @@ const AnnotationCreationCompanionWindow = ({
       windowId={windowId}
       id={id}
     >
-      {/* <AnnotoriousViewer windowId={windowId} > */}
-
-      {/* <AnnotationDrawing
-        activeTool={activeTool}
-        fillColor={fillColor}
-        strokeColor={strokeColor}
-        strokeWidth={strokeWidth}
-        closed={closedMode === 'closed'}
-        svg={svg}
-        updateGeometry={updateGeometry}
-        windowId={windowId}
-      /> */}
       <form onSubmit={submitForm}>
         <StyledSection>
           <Grid container>
@@ -252,6 +242,7 @@ const AnnotationCreationCompanionWindow = ({
                   aria-label="tool selection"
                   size="small"
                 >
+                  <br/>
                   <ToggleButton value="cursor" aria-label="select cursor">
                     <CursorIcon />
                   </ToggleButton>
@@ -270,15 +261,15 @@ const AnnotationCreationCompanionWindow = ({
                   <ToggleButton value="rectangle" aria-label="add a rectangle">
                     <RectangleIcon />
                   </ToggleButton>
-                  <ToggleButton value="ellipse" aria-label="add a circle">
+                  {/* <ToggleButton value="ellipse" aria-label="add a circle">
                     <CircleIcon />
-                  </ToggleButton>
+                  </ToggleButton> */}
                   <ToggleButton value="polygon" aria-label="add a polygon">
                     <PolygonIcon />
                   </ToggleButton>
-                  <ToggleButton value="freehand" aria-label="free hand polygon">
+                  {/* <ToggleButton value="freehand" aria-label="free hand polygon">
                     <GestureIcon />
-                  </ToggleButton>
+                  </ToggleButton> */}
                 </ToggleButtonGroup>
               </StyledPaper>
             </Grid>
@@ -377,7 +368,6 @@ const AnnotationCreationCompanionWindow = ({
           onChangeComplete={updateStrokeColor}
         />
       </Popover>
-      {/* </AnnotoriousViewer> */}
     </CompanionWindow>
   );
 };

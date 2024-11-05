@@ -28,7 +28,9 @@ const config = {
   windows: [{
     loadedManifest: 'https://iiif.harvardartmuseums.org/manifests/object/299843',
   }],
+  osdConfig: {
+    crossOriginPolicy: 'Anonymous',
+  },
 };
 
 mirador.viewer(config, [...annotationPlugins]);
-// mirador.viewer(config);

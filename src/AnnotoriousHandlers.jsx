@@ -9,8 +9,6 @@ const AnnotoriousHooks = (props) => {
     const { setViewer } = context;
 
     const anno = useAnnotator();
-    console.log("Annotator Value: ", anno);
-    // OK, now it's got props wrapping the companion window not the viewer...?
 
     useEffect(() => {
         const viewerInstance = OSDReferences.get(windowId);
@@ -22,7 +20,8 @@ const AnnotoriousHooks = (props) => {
     useEffect(() => {
 
         if (anno) {
-            // anno.setAnnotations(props.annotations);
+            console.log("IF Annotator Value: ", anno);
+
             anno.setDrawingEnabled(true)
             anno.setStyle({
                 fill: '#00ff00',
@@ -31,7 +30,7 @@ const AnnotoriousHooks = (props) => {
                 strokeOpacity: 1
             });
 
-            anno.setDrawingTool('polygon');
+            // anno.setDrawingTool('polygon');
             anno.setVisible(true);
 
             const handleCreate = annotation => {
@@ -45,6 +44,15 @@ const AnnotoriousHooks = (props) => {
             const handleDelete = annotation => {
                 console.log("Annotation deleted:", annotation);
             };
+
+            anno.on('clickAnnotation', (annotation, originalEvent) => {
+                console.log('Annotation clicked: ' + annotation.id);
+            });
+
+            // works, fires a lot. 
+            // anno.on('viewportIntersect', (annotations) => {
+            //     console.log('Annotations in viewport', annotations);
+            // });
 
             anno.on('createAnnotation', handleCreate);
             anno.on('updateAnnotation', handleUpdate);
@@ -60,7 +68,7 @@ const AnnotoriousHooks = (props) => {
         }
     }, [anno]);
 
-      // State for the active tool
+  // State for the active tool
   const [activeTool, setActiveTool] = useState('cursor');
 
   // The method you want to trigger when the button changes
@@ -69,11 +77,10 @@ const AnnotoriousHooks = (props) => {
       // Update the state of activeTool
       setActiveTool(newTool);
 
-      // You can also trigger any additional logic here
       console.log(`Tool changed to: ${newTool}`);
       
-      // For example, if you're using Annotorious, you can change the drawing tool
       anno.setDrawingTool(newTool);
+    //   console.log(anno.getDrawingTool());
     }
   };
 
@@ -82,15 +89,17 @@ const AnnotoriousHooks = (props) => {
     );
 }
 
-const AnnotoriousViewer = (props) => {
+const AnnotoriousHandlers = (props) => {
     console.log("AnnotoriousViewer Props: ", props);
+    // Must add Annotorious, OpenSeadragonAnnotator, contexts before AnnotoriousHooks
+    // hence the weird seperation
     return (
       <Annotorious>
-          <OpenSeadragonAnnotator>
+           <OpenSeadragonAnnotator>
               <AnnotoriousHooks {...props} />
-          </OpenSeadragonAnnotator>
-      </Annotorious>
+           </OpenSeadragonAnnotator>
+       </Annotorious>
     );
   };
   
-export default AnnotoriousViewer;
+export default AnnotoriousHandlers;
