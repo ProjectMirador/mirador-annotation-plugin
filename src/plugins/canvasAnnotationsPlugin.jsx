@@ -7,6 +7,8 @@ import CanvasListItem from '../CanvasListItem';
 import AnnotationActionsContext from '../AnnotationActionsContext';
 import SingleCanvasDialog from '../SingleCanvasDialog';
 
+
+/* I don't know what this does */
 /** */
 class CanvasAnnotationsWrapper extends Component {
   /** */
@@ -100,6 +102,7 @@ function mapStateToProps(state, { targetProps: { windowId } }) {
   canvases.forEach((canvas) => {
     const anno = state.annotations[canvas.id];
     if (anno) {
+      // HERE!
       annotationsOnCanvases[canvas.id] = anno;
     }
   });

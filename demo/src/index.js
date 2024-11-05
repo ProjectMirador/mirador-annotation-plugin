@@ -1,5 +1,14 @@
 
 import mirador from 'mirador/dist/es/src/index';
+/** this is what index.js exports, so you get them all
+ * export default [
+  miradorAnnotationPlugin,
+  externalStorageAnnotationPlugin,
+  canvasAnnotationsPlugin,
+  annotationCreationCompanionWindow,
+  windowSideBarButtonsPlugin,
+];
+ */
 import annotationPlugins from '../../src';
 import LocalStorageAdapter from '../../src/LocalStorageAdapter';
 import AnnototAdapter from '../../src/AnnototAdapter';
@@ -22,3 +31,4 @@ const config = {
 };
 
 mirador.viewer(config, [...annotationPlugins]);
+// mirador.viewer(config);

@@ -133,12 +133,15 @@ class EditTool extends Component {
   /** */
   render() {
     return (
-      <Tool
-        onMouseDown={this.onMouseDown}
-        onMouseDrag={this.onMouseDrag}
-        onMouseMove={this.onMouseMove}
-        onMouseUp={this.onMouseUp}
-      />
+      <div>
+        The tool.
+      </div>
+      // <Tool
+      //   onMouseDown={this.onMouseDown}
+      //   onMouseDrag={this.onMouseDrag}
+      //   onMouseMove={this.onMouseMove}
+      //   onMouseUp={this.onMouseUp}
+      // />
     );
   }
 }

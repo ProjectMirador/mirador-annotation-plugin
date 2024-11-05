@@ -73,32 +73,32 @@ class AnnotationDrawing extends Component {
     const flipped = this.OSDReference.viewport.getFlip();
 
     const viewProps = {
-      center: new Point(center.x, center.y),
+      // center: new Point(center.x, center.y),
       rotation: this.OSDReference.viewport.getRotation(),
-      scaling: new Point(flipped ? -1 : 1, 1),
+      // scaling: new Point(flipped ? -1 : 1, 1),
       zoom: image1.viewportToImageZoom(viewportZoom),
     };
 
-    let ActiveTool = RectangleTool;
-    switch (activeTool) {
-      case 'rectangle':
-        ActiveTool = RectangleTool;
-        break;
-      case 'ellipse':
-        ActiveTool = EllipseTool;
-        break;
-      case 'polygon':
-        ActiveTool = PolygonTool;
-        break;
-      case 'freehand':
-        ActiveTool = FreeformPathTool;
-        break;
-      case 'edit':
-        ActiveTool = EditTool;
-        break;
-      default:
-        break;
-    }
+    // let ActiveTool = RectangleTool;
+    // switch (activeTool) {
+    //   case 'rectangle':
+    //     ActiveTool = RectangleTool;
+    //     break;
+    //   case 'ellipse':
+    //     ActiveTool = EllipseTool;
+    //     break;
+    //   case 'polygon':
+    //     ActiveTool = PolygonTool;
+    //     break;
+    //   case 'freehand':
+    //     ActiveTool = FreeformPathTool;
+    //     break;
+    //   case 'edit':
+    //     ActiveTool = EditTool;
+    //     break;
+    //   default:
+    //     break;
+    // }
 
     return (
       <div
@@ -107,7 +107,8 @@ class AnnotationDrawing extends Component {
           height: '100%', left: 0, position: 'absolute', top: 0, width: '100%',
         }}
       >
-        <PaperContainer
+        {/* PaperContainer, renderWithPaperScope, were from psychobolt */}
+        {/* <PaperContainer
           canvasProps={{ style: { height: '100%', width: '100%' } }}
           viewProps={viewProps}
         >
@@ -132,7 +133,7 @@ class AnnotationDrawing extends Component {
               />
             );
           })}
-        </PaperContainer>
+        </PaperContainer> */}
       </div>
     );
   }

@@ -1,7 +1,8 @@
 import * as actions from 'mirador/dist/es/src/state/actions';
 import { getCompanionWindow } from 'mirador/dist/es/src/state/selectors/companionWindows';
 import { getVisibleCanvases } from 'mirador/dist/es/src/state/selectors/canvases';
-import AnnotationCreation from '../AnnotationCreation';
+import AnnotoriousCreationCompanionWindow from '../AnnotoriousCreationCompanionWindow';
+import AnnotoriousViewer from '../AnnotoriousViewer';
 
 /** */
 const mapDispatchToProps = (dispatch, { id, windowId }) => ({
@@ -23,6 +24,7 @@ function mapStateToProps(state, { id: companionWindowId, windowId }) {
     const annotationsOnCanvas = state.annotations[canvas.id];
     Object.values(annotationsOnCanvas || {}).forEach((value, i) => {
       if (value.json && value.json.items) {
+        console.log(anno)
         annotation = value.json.items.find((anno) => anno.id === annotationid);
       }
     });
@@ -37,7 +39,10 @@ function mapStateToProps(state, { id: companionWindowId, windowId }) {
 
 export default {
   companionWindowKey: 'annotationCreation',
-  component: AnnotationCreation,
+  // our own component
+  // component: AnnotationCreation,
+  // component: AnnotoriousCreationCompanionWindow,
+  component: AnnotoriousViewer,
   mapDispatchToProps,
   mapStateToProps,
 };

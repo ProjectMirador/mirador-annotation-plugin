@@ -15,7 +15,10 @@ import { styled } from '@mui/material/styles';
 import { SketchPicker } from 'react-color';
 import { v4 as uuid } from 'uuid';
 import CompanionWindow from 'mirador/dist/es/src/containers/CompanionWindow';
-import AnnotationDrawing from './AnnotationDrawing';
+// import AnnotationDrawing from './AnnotationDrawing';
+import AnnotoriousWrapper from './AnnotoriousWrapper';
+
+
 import TextEditor from './TextEditor';
 import WebAnnotation from './WebAnnotation';
 import CursorIcon from './icons/Cursor';
@@ -217,7 +220,7 @@ const AnnotationCreation = ({
       windowId={windowId}
       id={id}
     >
-      <AnnotationDrawing
+      {/* <AnnotationDrawing
         activeTool={activeTool}
         fillColor={fillColor}
         strokeColor={strokeColor}
@@ -226,7 +229,8 @@ const AnnotationCreation = ({
         svg={svg}
         updateGeometry={updateGeometry}
         windowId={windowId}
-      />
+      /> */}
+      <AnnotoriousWrapper />
       <form onSubmit={submitForm}>
         <StyledSection>
           <Grid container>
