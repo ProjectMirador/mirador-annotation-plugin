@@ -32,6 +32,8 @@ import LineWeightIcon from '@mui/icons-material/LineWeight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import FormatShapesIcon from '@mui/icons-material/FormatShapes';
 
+import AnnotoriousDrawing from './AnnotoriousDrawing';
+
 // Styled components
 const StyledPaper = styled(Paper)(({ theme }) => ({
   display: 'flex',
@@ -227,6 +229,16 @@ const AnnotationCreationCompanionWindow = ({
       windowId={windowId}
       id={id}
     >
+      {/* <AnnotoriousDrawing
+        activeTool={activeTool}
+        fillColor={fillColor}
+        strokeColor={strokeColor}
+        strokeWidth={strokeWidth}
+        closed={closedMode === 'closed'}
+        svg={svg}
+        updateGeometry={updateGeometry}
+        windowId={windowId}
+      /> */}
       <form onSubmit={submitForm}>
         <StyledSection>
           <Grid container>
@@ -243,7 +255,7 @@ const AnnotationCreationCompanionWindow = ({
                   size="small"
                 >
                   <br/>
-                  <ToggleButton value="cursor" aria-label="select cursor">
+                  <ToggleButton value="pointer" aria-label="select cursor">
                     <CursorIcon />
                   </ToggleButton>
                   <ToggleButton value="edit" aria-label="select edit">

@@ -5,9 +5,6 @@ import * as packageJson from './package.json';
 
 export default defineConfig({
   plugins: [
-    // react({
-    //     jsxRuntime: 'classic' 
-    // }),
     react({
       jsxImportSource: '@emotion/react',
       babel: {
@@ -25,16 +22,10 @@ export default defineConfig({
   build: {
     lib: {
       entry: './src/index.ts',
-      formats: ['es'],
+      formats: ['es', 'umd'],
       fileName: (format) => `mirador-annotations${format}.js`
     },
     rollupOptions: {
-    //   external: [
-    //     ...Object.keys(packageJson.peerDependencies),
-    //     '@annotorious/core',
-    //     '@annotorious/annotorious',
-    //     '@annotorious/openseadragon'
-    //   ],
       output: {
         preserveModules: true,
         assetFileNames: 'mirador-annotations.[ext]',

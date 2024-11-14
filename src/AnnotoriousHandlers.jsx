@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { OSDReferences } from 'mirador/dist/es/src/plugins/OSDReferences';
-import { Annotorious, OpenSeadragonAnnotator, OpenSeadragonAnnotationPopup, OpenSeadragonAnnotatorContext, useAnnotator } from '@annotorious/react';
+import { Annotorious, OpenSeadragonAnnotator, OpenSeadragonAnnotationPopup, OpenSeadragonAnnotatorContext, useAnnotator, useViewer } from '@annotorious/react';
 import AnnotationCreationCompanionWindow from './AnnotoriousCreationCompanionWindow';
 
 const AnnotoriousHooks = (props) => {
@@ -9,19 +9,42 @@ const AnnotoriousHooks = (props) => {
     const { setViewer } = context;
 
     const anno = useAnnotator();
+    const viewer = useViewer();
 
     useEffect(() => {
         const viewerInstance = OSDReferences.get(windowId);
         if (viewerInstance) {
-            setViewer(viewerInstance.current);
+            if (!viewer) {
+                setViewer(viewerInstance.current);
+            }
         }
-    }, [windowId, setViewer]);
+    }, [windowId, setViewer, viewer]);
+
+    const [activeTool, setActiveTool] = useState('pointer');
+    useEffect(() => {
+        console.log("Active Tool: ", activeTool);
+        if (viewer) {
+            if (activeTool !== 'pointer') {
+                viewer.setMouseNavEnabled(false);
+                viewer.canvas.style.pointerEvents = 'none';
+            } else {
+                viewer.setMouseNavEnabled(true);
+            }
+        }
+    }, [activeTool]);
+
+    const handleToolChange = (event, newTool) => {
+        console.log("Tool Change Event: ", event);
+        if (newTool !== null) {
+            setActiveTool(newTool);
+            anno.setDrawingTool(newTool);
+            console.log(`Tool changed to: ${newTool}`);
+        }
+    };
 
     useEffect(() => {
 
         if (anno) {
-            console.log("IF Annotator Value: ", anno);
-
             anno.setDrawingEnabled(true)
             anno.setStyle({
                 fill: '#00ff00',
@@ -30,12 +53,12 @@ const AnnotoriousHooks = (props) => {
                 strokeOpacity: 1
             });
 
-            // anno.setDrawingTool('polygon');
             anno.setVisible(true);
 
+            // TODO: why is this resetting the zoom/pan enabled, even when a non-pointer tool is selected?
             const handleCreate = annotation => {
                 console.log("Annotation created:", annotation);
-            };
+            };  
 
             const handleUpdate = annotation => {
                 console.log("Annotation updated:", annotation);
@@ -67,22 +90,6 @@ const AnnotoriousHooks = (props) => {
             };
         }
     }, [anno]);
-
-  // State for the active tool
-  const [activeTool, setActiveTool] = useState('cursor');
-
-  // The method you want to trigger when the button changes
-  const handleToolChange = (event, newTool) => {
-    if (newTool !== null) {
-      // Update the state of activeTool
-      setActiveTool(newTool);
-
-      console.log(`Tool changed to: ${newTool}`);
-      
-      anno.setDrawingTool(newTool);
-    //   console.log(anno.getDrawingTool());
-    }
-  };
 
     return (
         <AnnotationCreationCompanionWindow {...props} handleToolChange={handleToolChange} />
